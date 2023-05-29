@@ -1,5 +1,9 @@
 package br.com.ed;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 public class Arvore {
     public No raiz;
     public long tamanho = 0;
@@ -162,5 +166,28 @@ public class Arvore {
         }
 
         return false;
+    }
+
+    public Set<Integer> getSubArvoreEsquerda () {
+        Set<Integer> elementos = new HashSet<>();
+
+        No atual = raiz;
+
+        if (atual.esquerda == null) {
+            return null;
+        }
+
+        while (atual != null) {
+            if (atual.direita != null && atual != raiz) {
+                elementos.add(atual.direita.info);
+            }
+
+            if (atual.esquerda != null) {
+                elementos.add(atual.esquerda.info);
+            }
+            atual = atual.esquerda;
+        }
+
+        return elementos;
     }
 }
