@@ -1,6 +1,6 @@
 package br.com.ed;
 
-import java.util.Set;
+import java.util.List;
 
 public class TestaArvore {
     public static void main(String[] args) {
@@ -10,9 +10,11 @@ public class TestaArvore {
 
         for (int i = 0; i < 10; i++) {
             boolean inseriu = arvore.inserir(info[i]);
+
+            System.out.println("Inseriu: " + info[i] + " : " + inseriu);
         }
 
-        Set<Integer> elementos = arvore.getSubArvoreEsquerda();
+        List<Integer> elementos = arvore.getPreOrder();
 
         elementos.forEach(e -> {
             System.out.println("Elemento: " + e);

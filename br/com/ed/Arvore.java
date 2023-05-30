@@ -2,6 +2,7 @@ package br.com.ed;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Arvore {
@@ -190,4 +191,81 @@ public class Arvore {
 
         return elementos;
     }
+    
+    public Set<Integer> getSubArvoreDireita () {
+        Set<Integer> elementos = new HashSet<>();
+
+        No atual = raiz;
+
+        if (atual.direita == null) {
+            return null;
+        }
+
+        while (atual != null) {
+            if (atual.direita != null) {
+                elementos.add(atual.direita.info);
+            }
+
+            if (atual.esquerda != null && atual != raiz) {
+                elementos.add(atual.esquerda.info);
+            }
+            atual = atual.direita;
+        }
+
+        return elementos;
+    }
+
+    public List<Integer> getPreOrder () {
+        List<Integer> elementos = new ArrayList<Integer>();
+
+        No atual = raiz;
+
+        // Sub árvore esquerda
+        while (true) {
+            elementos.add(atual.info);
+            if (atual.esquerda == null) break;
+            atual = atual.esquerda;
+        }
+
+        while (atual != raiz) {
+            atual = atual.pai;
+            if (atual.direita != null)
+                elementos.add(atual.direita.info);
+        }
+
+        // -------------------------
+        // Sub árvore direita
+        while (true) {
+            atual = atual.direita;
+            elementos.add(atual.info);
+            if (atual.direita == null) break;
+        }
+
+        while (true) {
+            atual = atual.pai;
+            if (atual == raiz) break;
+            if(atual.esquerda != null)
+                elementos.add(atual.esquerda.info);
+        }
+        // --------------------------
+
+        return elementos;
+    }
+
+    public ArrayList<Integer> getInOrder () {
+        ArrayList<Integer> elementos = new ArrayList<>();
+
+
+
+        return elementos;
+    }
+
+    public ArrayList<Integer> getPostOrder () {
+        ArrayList<Integer> elementos = new ArrayList<>();
+
+
+
+        return elementos;
+    }
+
 }
